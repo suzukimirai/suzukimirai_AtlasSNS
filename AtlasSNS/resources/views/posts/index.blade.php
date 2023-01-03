@@ -18,9 +18,9 @@
 <table>
     <tr>
         <th><img src="images/{{ $post->user->images }}" alt="ユーザーアイコン"></th>
-        <td>投稿者：{{ $post->user->username }}</td>
-        <td>内容：{{ $post->post }}</td>
-        <td>投稿日時：{{ $post->updated_at }}</td>
+        <td>{{ $post->user->username }}</td>
+        <td>{{ $post->post }}</td>
+        <td>{{ $post->updated_at }}</td>
         @if($post->user_id === Auth::id())
         <td><a class="btn btn-primary" href=""><img src="images/edit.png" alt="編集" width="50" height="50"></a></td><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
         <td><a class="btn btn-danger" href="" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="images/trash-h.png" alt="ゴミ箱" width="50" height="50"></a></td>
