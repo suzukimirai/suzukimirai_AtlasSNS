@@ -1,0 +1,39 @@
+@charset "utf-8";
+html{
+}
+body{
+}
+/* header */
+#header{
+    background:#186AC9;
+    width:100%;
+    padding: 30px 4% 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+#header-right{
+    display:flex;
+    margin:0 0 0 auto;
+}
+
+nav{
+    /* display: none; */
+}
+
+
+/* main content */
+#row{
+    display: flex;
+    flex-flow: row wrap;
+}
+#container{
+    flex: 0 0 80%;
+}
+#side-bar{
+    flex: 0 0 19%;
+    border-left: 1px solid #727272;
+}
+
+/* 共通のヘッダー */
