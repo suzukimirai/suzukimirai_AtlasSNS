@@ -48,10 +48,13 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/top','PostsController@index')->name('top');;
 Route::post('/top','PostsController@index');
 
+Route::get('/top/{id}/postDelete', 'PostsController@postDelete');
+
 Route::post('/newPost','PostsController@newPost');
 
 
 Route::get('/profile','UsersController@profile');
+Route::post('/profile/edit', 'UsersController@profileEdit');
 
 Route::get('/search','UsersController@index');
 

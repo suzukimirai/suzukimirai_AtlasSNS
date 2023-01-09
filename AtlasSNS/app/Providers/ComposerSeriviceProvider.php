@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
-
+use App\Post;
+use View;
 use Illuminate\Support\ServiceProvider;
+use App\Http\ViewComposers\ViewComposer;
 
-class AppServiceProvider extends ServiceProvider
+class ComposerSeriviceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
@@ -18,13 +20,13 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
         //
-
+        view::share('posts', Post::get());
     }
 }

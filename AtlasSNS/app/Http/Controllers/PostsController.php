@@ -22,16 +22,15 @@ class PostsController extends Controller
     public function index(Follow $follow){
 
         //トップページ共通ヘッダー
-        $user = Auth::user()->first();
 
-        $following_id = $follow->countFollowing_id(Auth::id());
-        $followed_id = $follow->countFollowed_id(Auth::id());
-        //dd($following_id);
+        // $following_id = $follow->countFollowing_id(Auth::id());
+        // $followed_id = $follow->countFollowed_id(Auth::id());
+        //dd($user);
 
         //投稿トップページ
         $posts = Post::get();
         // dd($posts);
-        return view('posts.index', compact('user', 'posts', 'following_id','followed_id'));
+        return view('posts.index', compact('posts'));
 
         //フォローリストページ
 
@@ -41,14 +40,19 @@ class PostsController extends Controller
 
     public function newPost(Request $request, Post $post){
 
-        $request->validate([
+        $request->validate([//$requestで受け取ったものをバリデーションする。
             'newPost' => 'between:1,200',
         ]);
 
-        $post = $request->input('newPost');//$requestでフォーム全体を送り、その中でnameの部分(newPost)を受け取り$postに代入する
+        $newPost = $request->input('newPost');//$requestでフォーム全体を送り、その中でnameの部分(newPost)を受け取り$postに代入する
 
-        Post::create(['user_id' => Auth::id(), 'post' => $post ]);//左側はpostテーブルのカラム名
+        $post->postCreate($newPost);
          return redirect('top');
+    }
+
+    public function postDelete($id, Post $post){
+        $post->postDelete($id);//PostモデルのpostDeleteメソッドを呼び出している。
+        return redirect('top');
     }
 
 

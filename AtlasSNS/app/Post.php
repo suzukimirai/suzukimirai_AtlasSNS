@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -15,5 +16,13 @@ class Post extends Model
 
     public function user(){
        return $this->belongsTo('App\User');
+    }
+
+    public function postCreate($newPost){
+        return Post::create(['user_id' => Auth::id(), 'post' => $newPost ]);
+    }
+
+    public function postDelete($id){
+        return Post::where('id', $id)->delete();
     }
 }

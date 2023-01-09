@@ -26,7 +26,7 @@
                 <h1><a href="/top"><img src="images/logo.png"></a></h1>
             </div>
             <div id="header-right">
-                <p>{{ $user->username }}さん</p>
+                <p>{{ Auth::user()->username }}さん</p>
                 <div class="menu">
                     <input type="checkbox" class="nav-open active"></input>
                     <nav>
@@ -37,7 +37,11 @@
                         </ul>
                     </nav>
                 </div>
-                <img src="images/{{ $user->images }}">
+                @if(Auth::user()->images === 'Atlas.png')
+                    <th><img src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
+                @else
+                    <th><img src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50"></th>
+                @endif
             </div>
         </div>
     </header>
@@ -50,20 +54,12 @@
                 <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                @if(is_null($following_id))
-                <p>0名</p>
-                @else
-                <p>{{ $following_id }}名</p>
-                @endif
+                {{ Auth::user()->following()->count() }}
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                @if(is_null($followed_id))
-                <p>0名</p>
-                @else
-                <p>{{ $followed_id }}名</p>
-                @endif
+                {{ Auth::user()->followed()->count() }}
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
