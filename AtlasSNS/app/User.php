@@ -42,6 +42,38 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'follows', 'followed_id', 'following_id' );
     }
 
+    public function allusers($id){
+        return User::where('id','<>', $id);
+    }
+
+    public function search($keyword){
+        return User::where('username', 'LIKE', "%{$keyword}%");
+    }
+
+    //フォローする
+    public function follow(Int $user_id) 
+    {
+        return $this->following()->attach($user_id);
+    }
+
+    // フォロー解除する
+    public function unfollow(Int $user_id)
+    {
+        return $this->following()->detach($user_id);
+    }
+
+    // フォローしているか
+    public function isFollowing(Int $user_id) 
+    {
+        return (boolean) $this->following()->where('followed_id', $user_id)->first();
+    }
+
+    // フォローされているか
+    public function isFollowed(Int $user_id) 
+    {
+        return (boolean) $this->followed()->where('following_id', $user_id)->first();
+    }
+
 
 
 }

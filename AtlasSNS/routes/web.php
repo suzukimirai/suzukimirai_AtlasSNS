@@ -58,6 +58,9 @@ Route::post('/profile/edit', 'UsersController@profileEdit');
 
 Route::get('/search','UsersController@index');
 
+Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');//フォローする
+Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');//フォロー解除
+
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
 
