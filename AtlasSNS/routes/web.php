@@ -49,6 +49,7 @@ Route::get('/top','PostsController@index')->name('top');;
 Route::post('/top','PostsController@index');
 
 Route::get('/top/{id}/postDelete', 'PostsController@postDelete');
+Route::post('/top/postEdit', 'PostsController@postEdit');
 
 Route::post('/newPost','PostsController@newPost');
 

@@ -22,6 +22,10 @@ class Post extends Model
         return Post::create(['user_id' => Auth::id(), 'post' => $newPost ]);
     }
 
+    public function postEdit($editedPost, $post_id){
+        return Post::where('id', $post_id)->update(['post' => $editedPost]);
+    }
+
     public function postDelete($id){
         return Post::where('id', $id)->delete();
     }

@@ -50,6 +50,14 @@ class PostsController extends Controller
          return redirect('top');
     }
 
+    public function postEdit(Request $request, Post $post){
+        $post_id = $request->input('post_id');
+        $editedPost = $request->input('post');
+        $post->postEdit($editedPost, $post_id);
+
+        return redirect('top');
+    }
+
     public function postDelete($id, Post $post){
         $post->postDelete($id);//PostモデルのpostDeleteメソッドを呼び出している。
         return redirect('top');

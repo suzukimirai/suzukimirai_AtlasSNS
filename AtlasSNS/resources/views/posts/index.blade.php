@@ -30,12 +30,27 @@
         <td>{{ $post->post }}</td>
         <td>{{ $post->updated_at }}</td>
         @if($post->user_id === Auth::id())
-        <td><a class="btn btn-primary" href=""><img src="images/edit.png" alt="編集" width="50" height="50"></a></td><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
+        <div class="content">
+            <td><a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" width="50" height="50"></a></td><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
+        </div>
         <td><a class="btn btn-danger" href="top/{{ $post->id }}/postDelete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash-h.png" alt="ゴミ箱" width="50" height="50"></a></td>
         @endif
 
     </tr>
 </table>
 @endforeach
+   <!-- モーダルの中身 -->
+   <div class="modal js-modal">
+        <div class="modal__bg js-modal-close"></div>
+        <div class="modal__content">
+           <form action="top/postEdit" method="post">
+                <textarea name="post" class="modal_post"></textarea>
+                <input type="hidden" name="post_id" class="modal_id" value="">
+                <input type="submit" value="更新">
+                {{ csrf_field() }}
+           </form>
+           <a class="js-modal-close" href="">閉じる</a>
+        </div>
+    </div>
 
 @endsection
