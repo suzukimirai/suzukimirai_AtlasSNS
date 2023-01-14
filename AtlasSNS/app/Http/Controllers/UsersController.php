@@ -51,6 +51,10 @@ class UsersController extends Controller
         return redirect()->action('PostsController@index');
     }
 
+    public function userProfile(){
+        return view('users.profile');
+    }
+
     public function index(Request $request, User $user){
 
         $keyword = $request->input('keyword');

@@ -18,7 +18,6 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
-    <script src="{{ asset('js/script.js') }}"></script>
 </head>
 <body>
     <header>

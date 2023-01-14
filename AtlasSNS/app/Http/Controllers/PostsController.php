@@ -29,18 +29,34 @@ class PostsController extends Controller
 
         //投稿トップページ
 
-        $following_id = Auth::user()->following()->pluck(' followed_id ');
-        // dd($following_id);
-        // $posts = Post::with('user')->whereIn(' ② ', $following_id)->get();
+        $following_id = Auth::user()->following()->pluck('followed_id');
+        //dd($following_id);
+        $posts = Post::with('user')->whereIn('user_id',$following_id)->orWhere('user_id',Auth::id())->get();
 
-        $posts = Post::get();
+        // $posts = Post::get();
         // dd($posts);
         return view('posts.index', compact('posts'));
 
         //フォローリストページ
 
         //フォロワーリストページ
+    }
 
+    public function followList(){
+
+        $following_id = Auth::user()->following()->pluck('followed_id');//ログインユーザーがフォローしているユーザーのIID
+        $followuserimages = User::whereIn('id',$following_id)->get();
+        $followuserposts = Post::whereIn('user_id',$following_id)->get();
+        return view('follows.followlist', compact('followuserimages','followuserposts'));
+    }
+
+    public function followerList(){
+
+        $followed_id = Auth::user()->followed()->pluck('following_id');//ログインユーザーがフォローしているユーザーのIID
+        $followeruserimages = User::whereIn('id',$followed_id)->get();
+        $followeruserposts = Post::whereIn('user_id',$followed_id)->get();
+
+        return view('follows.followerList', compact('followeruserimages','followeruserposts'));
     }
 
     public function newPost(Request $request, Post $post){
