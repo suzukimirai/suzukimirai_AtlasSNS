@@ -28,6 +28,11 @@ class PostsController extends Controller
         //dd($user);
 
         //投稿トップページ
+
+        $following_id = Auth::user()->following()->pluck(' followed_id ');
+        // dd($following_id);
+        // $posts = Post::with('user')->whereIn(' ② ', $following_id)->get();
+
         $posts = Post::get();
         // dd($posts);
         return view('posts.index', compact('posts'));
