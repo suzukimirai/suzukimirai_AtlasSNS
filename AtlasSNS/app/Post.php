@@ -29,4 +29,11 @@ class Post extends Model
     public function postDelete($id){
         return Post::where('id', $id)->delete();
     }
+
+    //降順
+    public function userPostAsc($id){
+        return Post::where('user_id', $id)->orderBy('updated_at', 'desc')->get();
+    }
+
+
 }

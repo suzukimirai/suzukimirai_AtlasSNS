@@ -2,6 +2,8 @@
 
 @section('content')
 
+@if(Request::is('profile'))
+
 @foreach ($errors->all() as $error)
     <p>{{ $error }}</p>
 @endforeach
@@ -23,5 +25,46 @@
     <input type="submit" value="更新">
 </form>
 
+@else
+
+<div>
+    @if($user->images == 'Atlas.png')
+        <th><img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
+    @else
+        <th><img src="{{ asset('storage/images/'.$user->images) }}" width="50" height="50"></th>
+    @endif
+    name:{{ $user->username }}
+    bio:{{ $user->bio }}
+    @if (auth()->user()->isFollowing($user->id))<!-- 相手をフォローしているかどうかで条件分岐 -->
+        <form action="/profile/{{$user->id}}/profileUnFollow" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <button type="submit" class="btn btn-danger">フォロー解除</button>
+        </form>
+        @else
+        <form action="/profile/{{$user->id}}/profileFollow" method="POST">
+            {{ csrf_field() }}
+            <button type="submit" class="btn btn-primary">フォローする</button>
+        </form>
+        @endif
+
+</div>
+
+<div>
+@foreach($posts as $post)
+@if($user->images == 'Atlas.png')
+    <th><img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
+@else
+    <th><img src="{{ asset('storage/images/'.$user->images) }}" width="50" height="50"></th>
+@endif
+{{ $user->username }}
+{{ $post->post }}
+{{ $post->updated_at }}
+<br>
+
+@endforeach
+</div>
+
+@endif
 
 @endsection

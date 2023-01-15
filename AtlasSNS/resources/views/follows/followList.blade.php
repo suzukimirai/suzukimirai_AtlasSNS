@@ -14,9 +14,9 @@
 <div>
     @foreach($followuserposts as $followuserpost)
     @if($followuserpost->user->images == 'Atlas.png')
-                <th><a href="/userProfile"><img src="{{ asset('images/'.$followuserpost->user->images)}}" alt="ユーザーアイコン" width="50" height="50"></a></th>
+                <th><a href="/{{$followuserpost->user->id}}/userProfile"><img src="{{ asset('images/'.$followuserpost->user->images)}}" alt="ユーザーアイコン" width="50" height="50"></a></th>
             @else
-                <th><a href="/userProfile"><img src="{{ asset('storage/images/'.$followuserpost->user->images) }}" width="50" height="50"></a></th>
+                <th><a href="/{{$followuserpost->user->id}}/userProfile"><img src="{{ asset('storage/images/'.$followuserpost->user->images) }}" width="50" height="50"></a></th>
             @endif
             <th>{{ $followuserpost->user->username}}</th><br>
             <th>{{ $followuserpost->post }}</th><br>

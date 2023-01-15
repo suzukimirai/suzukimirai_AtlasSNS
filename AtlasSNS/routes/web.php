@@ -57,12 +57,16 @@ Route::post('/newPost','PostsController@newPost');
 Route::get('/profile','UsersController@profile');
 Route::post('/profile/edit', 'UsersController@profileEdit');
 
-Route::get('/userProfile', 'UsersController@userProfile');
+Route::get('/{id}/userProfile', 'UsersController@userProfile');
 
 Route::get('/search','UsersController@index');
 
 Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');//フォローする
 Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');//フォロー解除
+
+Route::post('profile/{user}/profileFollow', 'UsersController@profileFollow');
+Route::delete('profile/{user}/profileUnFollow', 'UsersController@profileUnFollow');
+
 
 Route::get('/follow-list','PostsController@followList');
 Route::get('/follower-list','PostsController@followerList');

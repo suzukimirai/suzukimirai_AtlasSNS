@@ -51,9 +51,13 @@ class UsersController extends Controller
         return redirect()->action('PostsController@index');
     }
 
-    public function userProfile(){
-        return view('users.profile');
+    public function userProfile($id, Post $post){
+        $user = User::where('id', $id)->first();
+        $posts = $post->userPostAsc($id);
+        return view('users.profile',compact('user','posts'));
     }
+
+    
 
     public function index(Request $request, User $user){
 
@@ -72,7 +76,8 @@ class UsersController extends Controller
         return view('users.search', compact('users','keyword'));
     }
 
-    public function follow(User $user){
+
+    public function userFollow(User $user){
 
         $follower = auth()->user();
 
@@ -81,11 +86,9 @@ class UsersController extends Controller
             $follower->follow($user->id);
         }
 
-        return redirect('/search');
-
     }
 
-    public function unfollow(User $user){
+    public function userUnFollow(User $user){
 
         $follower = auth()->user();
         // フォローしているか
@@ -94,9 +97,41 @@ class UsersController extends Controller
             // フォローしていればフォローを解除する
             $follower->unfollow($user->id);
         }
+    }
+
+    public function follow(User $user){
+
+        $this->userFollow($user);
 
         return redirect('/search');
 
     }
 
+    public function unfollow(User $user){
+
+        $this->userUnFollow($user);
+
+        return redirect('/search');
+
+    }
+
+    public function profileFollow(User $user){
+
+    $this->userFollow($user);
+
+    return back();
+    }
+
+    public function profileUnFollow(User $user){
+
+        $this->userUnFollow($user);
+
+        return back();
+        }
 }
+
+
+
+
+
+

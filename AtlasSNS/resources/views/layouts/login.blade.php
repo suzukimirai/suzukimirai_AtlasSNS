@@ -23,7 +23,7 @@
     <header>
         <div id = "header">
             <div id="header-left">
-                <h1><a href="/top"><img src="images/logo.png"></a></h1>
+                <h1 id="header-logo"><a href="/top"><img src="{{ asset('images/logo.png')}}"></a></h1>
             </div>
             <div id="header-right">
                 <p>{{ Auth::user()->username }}さん</p>
