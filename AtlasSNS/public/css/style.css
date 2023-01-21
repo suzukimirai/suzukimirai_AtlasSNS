@@ -13,7 +13,7 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    height: 90px;
     display: flex;
     align-items: center;
 }
@@ -27,19 +27,48 @@ body{
     align-items: center;
 }
 
-#header-logo{
-    flex: none;
-    width: auto;
-    height: 35px;
+.header-logo{
+    margin-left:15px;
+    padding:10px;
+    /* flex: none; */
+    width: 150px;
+    height: 70px;
   }
 
 #header-right{
     display:flex;
-    margin:0 0 0 auto;
+    margin:0 30px 0 auto;
+    justify-content:space-between;
 }
 
-nav{
-    /* display: none; */
+.header-username{
+    display:flex;
+    align-items:center;
+    padding:5px;
+    color:#fff;
+    margin-right:15px;
+}
+
+
+
+.slide-button{
+    margin:15px 30px 15px 15px;
+    display: block;
+    height:18px;
+    width:18px;
+    border-top: 2px solid #fff;
+    cursor: pointer; /*　マウスオン時に表示されるカーソルの形 */
+    z-index: 1; /* コンテンツの重ね順 1が後ろで9999が前 */
+    left: 10px;
+    border-left: 2px solid #fff;
+    transform: rotate(45deg);
+
+
+}
+
+
+.accordion-menu{
+    display: none;
 }
 
 
@@ -56,7 +85,70 @@ nav{
     border-left: 1px solid #727272;
 }
 
-/* 共通のヘッダー */
+#confirm{
+    padding:15px;
+}
+
+.follow{
+    display:flex;
+    justify-content: space-between;
+    margin:30px;
+}
+
+.follower{
+    display:flex;
+    justify-content: space-between;
+    margin:30px;
+}
+
+.side-bar-btn{
+    display:block;
+    text-align: center;
+}
+
+.search{
+    border-top:1px solid #727272;
+    padding-top:15px;
+}
+
+/* トップページ */
+.post-form{
+    border-bottom:1px solid #727272;
+    /* position:relative; */
+    display:flex;
+    padding-top:30px;
+}
+
+.post-form-input{
+}
+
+.post-form-textarea{
+    resize: none;
+    border: none;
+    outline: none;
+    margin-left:30px;
+
+}
+
+::placeholder {
+    color: grey;
+    font-size: 1.2em;
+    opacity:6;
+  }
+
+.post-form-user-img{
+    /* position:absolute;
+    top:0;
+    left:0; */
+    margin-left:50px;
+
+}
+
+.post-form-img{
+    align-self:flex-end;
+    height:100px;
+    width:100px;
+}
 
 
 /* モーダル */

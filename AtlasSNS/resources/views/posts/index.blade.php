@@ -6,16 +6,18 @@
     {{ $error }}
 @endforeach
 
-<form action="/newPost" method="post">
-    @csrf
-    @if(Auth::user()->images === 'Atlas.png')
-            <th><img src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
-        @else
-            <th><img src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50"></th>
-        @endif
-    <input type="textarea" name="newPost" placeholder="投稿内容を入力してください" required>
-    <input type="image" src="images/post.png" width="50" height="50">
-</form>
+<div class="post-form-input">
+    <form action="/newPost" method="post" class="post-form">
+        @csrf
+        @if(Auth::user()->images === 'Atlas.png')
+                <th><img class="post-form-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
+            @else
+                <th><img class="post-form-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50"></th>
+            @endif
+        <textarea class="post-form-textarea" name="newPost" id="" cols="100" rows="8" placeholder="投稿内容を入力してください" required></textarea>
+        <input class="post-form-img" type="image" src="images/post.png" >
+    </form>
+</div>
 
 
 @foreach($posts as $post)
