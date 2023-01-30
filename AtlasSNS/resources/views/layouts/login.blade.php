@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title>Laravel SNS</title>
+    <script src="https://kit.fontawesome.com/543fdce9ba.js" crossorigin="anonymous"></script>    <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/543fdce9ba.css" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -22,28 +24,26 @@
 </head>
 <body>
     <header>
-        <div id = "header">
-            <div id="header-left">
-                <a href="/top"><img class="header-logo" src="{{ asset('images/logo.png')}}"></a>
+        <div id="header-left">
+            <a href="/top"><img class="header-logo" src="{{ asset('images/logo.png')}}"></a>
+        </div>
+        <div id="header-right">
+            <p class="header-username">{{ Auth::user()->username }}      さん</p>
+            <span class="slide-button"></span>
+            <div class="menu">
+                <nav class="accordion-menu">
+                    <ul>
+                        <li><a href="/top">ホーム</a></li>
+                        <li><a href="/profile">プロフィール編集</a></li>
+                        <li><a href="/logout">ログアウト</a></li>
+                    </ul>
+                </nav>
             </div>
-            <div id="header-right">
-                <p class="header-username">{{ Auth::user()->username }}      さん</p>
-                <span class="slide-button"></span>
-                <div class="menu">
-                    <nav class="accordion-menu">
-                        <ul>
-                            <li><a href="/top">ホーム</a></li>
-                            <li><a href="/profile">プロフィール編集</a></li>
-                            <li><a href="/logout">ログアウト</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                @if(Auth::user()->images === 'Atlas.png')
-                    <img class="header-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50">
-                @else
-                    <img class="header-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50">
-                @endif
-            </div>
+            @if(Auth::user()->images === 'Atlas.png')
+                <img class="header-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
+            @else
+                <img class="header-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user-icon">
+            @endif
         </div>
     </header>
     <div id="row">
@@ -58,7 +58,7 @@
                     <p>{{ Auth::user()->following()->count() }}人</p>
                 </div>
                 <div class="side-bar-btn">
-                    <button type="button" class="btn btn-secondary"><a href="/follow-list">フォローリスト</a></button>
+                    <button type="button" class="btn btn-primary"><a href="/follow-list">フォローリスト</a></button>
                 </div>
                 <div class="side-bar follower">
                     <p>フォロワー数</p>

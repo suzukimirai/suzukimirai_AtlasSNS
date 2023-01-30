@@ -2,19 +2,21 @@
 
 @section('content')
 
-{!! Form::open() !!}
-@csrf
-<p>AtlasSNSへようこそ</p>
+<div class="form">
+    {!! Form::open() !!}
+    @csrf
+    <p>AtlasSNSへようこそ</p>
+    <div class="content">
+        <label for="mail" class="label">mail adress</label>
+        <input type="email" name="mail" class="input">
+        <label for="password" class="label">password</label>
+        <input type="password" name="password" class="password">
+    </div>
+    <input type="submit" value="LOGIN" class="submit">
 
-{{ Form::label('e-mail') }}
-{{ Form::text('mail',old('text'),['class' => 'input']) }}
-{{ Form::label('password') }}
-{{ Form::password('password',old('password'),['class' => 'input']) }}
+    <p><a href="/register">新規ユーザーの方はこちら</a></p>
 
-{{ Form::submit('ログイン') }}
-
-<p><a href="/register">新規ユーザーの方はこちら</a></p>
-
-{!! Form::close() !!}
+    {!! Form::close() !!}
+</div>
 
 @endsection

@@ -44,7 +44,7 @@ class PostsController extends Controller
 
     public function followList(){
 
-        $following_id = Auth::user()->following()->pluck('followed_id');//ログインユーザーがフォローしているユーザーのIID
+        $following_id = Auth::user()->following()->pluck('followed_id');//ログインユーザーがフォローしているユーザーのID
         $followuserimages = User::whereIn('id',$following_id)->get();
         $followuserposts = Post::whereIn('user_id',$following_id)->get();
         return view('follows.followlist', compact('followuserimages','followuserposts'));

@@ -6,49 +6,54 @@
     {{ $error }}
 @endforeach
 
-<div class="post-form-input">
+<div class="content-top post-form-input">
     <form action="/newPost" method="post" class="post-form">
         @csrf
         @if(Auth::user()->images === 'Atlas.png')
-                <th><img class="post-form-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
+                <img class="post-form-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
             @else
-                <th><img class="post-form-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50"></th>
+                <img class="post-form-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user-icon">
             @endif
-        <textarea class="post-form-textarea" name="newPost" id="" cols="100" rows="8" placeholder="投稿内容を入力してください" required></textarea>
+        <textarea class="post-form-textarea" name="newPost" id="" cols="100" rows="6" placeholder="投稿内容を入力してください" required></textarea>
         <input class="post-form-img" type="image" src="images/post.png" >
     </form>
 </div>
 
 
 @foreach($posts as $post)
-<table>
-    <tr>
+<div class="post">
+    <div class="post-img">
         @if($post->user->images == 'Atlas.png')
-            <th><img src="{{ asset('images/'.$post->user->images)}}" alt="ユーザーアイコン" width="50" height="50"></th>
+            <img src="{{ asset('images/'.$post->user->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
         @else
-            <th><img src="{{ asset('storage/images/'.$post->user->images) }}" width="50" height="50"></th>
+            <img src="{{ asset('storage/images/'.$post->user->images) }}" width="50" height="50" class="user-icon">
         @endif
-        <td>{{ $post->user->username }}</td>
-        <td>{{ $post->post }}</td>
-        <td>{{ $post->updated_at }}</td>
-        @if($post->user_id === Auth::id())
-        <div class="content">
-            <td><a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" width="50" height="50"></a></td><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
+    </div>
+    <div class="post-content">
+        <div class="post-top">
+            <p class="post-username">{{ $post->user->username }}</p>
+            <p class="post-updated_at">{{ $post->updated_at }}</p>
         </div>
-        <td><a class="btn btn-danger" href="top/{{ $post->id }}/postDelete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash-h.png" alt="ゴミ箱" width="50" height="50"></a></td>
-        @endif
+        <p class="post-post">{{ $post->post }}</p>
 
-    </tr>
-</table>
+        @if($post->user_id === Auth::id())
+        <div class="post-btn">
+            <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" width="35" height="35"></a><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
+            <a class="btn-delete" href="top/{{ $post->id }}/postDelete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash-h.png" alt="ゴミ箱" width="40" height="40"></a>
+        </div>
+        @endif
+    </div>
+
+</div>
 @endforeach
    <!-- モーダルの中身 -->
    <div class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
-           <form action="top/postEdit" method="post">
+           <form action="top/postEdit" method="post" class="modal_form">
                 <textarea name="post" class="modal_post"></textarea>
                 <input type="hidden" name="post_id" class="modal_id" value="">
-                <input type="submit" value="更新">
+                <input type="image" src="images/edit.png" width="40" height="40" class="modal_form_edit">
                 {{ csrf_field() }}
            </form>
            <a class="js-modal-close" href="">閉じる</a>

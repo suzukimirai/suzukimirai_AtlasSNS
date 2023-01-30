@@ -2,40 +2,46 @@
 
 @section('content')
 
-<div class="search">
+<div class="content-top search-wrapper">
     <div class="search-form">
-        <form action="/search">
-            <input type="search" name="keyword"  placeholder="ユーザー名">
-            <input type="submit" value="検索">
+        <form action="/search" class="search-content">
+            <input type="search" name="keyword"  placeholder="ユーザー名" class="search-input">
+            <button type="submit" class="search-button">
+                <i class="fa-sharp fa-solid fa-magnifying-glass" color="white"></i>
+            </button>
+            <!-- <input type="image" src="images/search.jpg" width="30px" height="30px"> -->
         </form>
     </div>
     @if(!empty($keyword))
-    <p>検索ワード：{{ $keyword }}</p>
+    <div class="search-word-form">
+        <p class="search-word">検索ワード：{{ $keyword }}</p>
+    </div>
     @endif
 </div>
-<div>
-    <tr>
-        @foreach($users as $user )
+
+<div class="user-wrapper">
+    @foreach($users as $user )
+    <dl class="user-content">
         @if($user->images == 'Atlas.png')
-            <td><img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="50" height="50"></td>
+            <dt><a href="/{{$user->id}}/userProfile"><img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="40" height="40" class="user-icon"></a></dt>
         @else
-            <td><img src="{{ asset('storage/images/'.$user->images) }}" width="50" height="50"></td>
+            <dt><a href="/{{$user->id}}/userProfile"><img src="{{ asset('storage/images/'.$user->images) }}" width="40" height="40" class="user-icon"></a></dt>
         @endif
-            <td>{{ $user->username }}</td>
+            <dt class="follow-username">{{ $user->username }}</dt>
         @if (auth()->user()->isFollowing($user->id))<!-- 相手をフォローしているかどうかで条件分岐 -->
         <form action="{{ route('unfollow', $user->id ) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
-            <button type="submit" class="btn btn-danger">フォロー解除</button>
+            <dd><button type="submit" class="btn btn-danger follow-btn">フォロー解除</button></dd>
         </form>
         @else
         <form action="{{ route('follow', $user->id ) }}" method="POST">
             {{ csrf_field() }}
-            <button type="submit" class="btn btn-primary">フォローする</button>
+            <dd><button type="submit" class="btn btn-primary follow-btn">フォローする</button></dd>
         </form>
         @endif
-        @endforeach
-    </tr>
+    </dl>
+    @endforeach
 </div>
 
 
