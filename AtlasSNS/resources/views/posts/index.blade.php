@@ -6,38 +6,38 @@
     {{ $error }}
 @endforeach
 
-<div class="content-top post-form-input">
-    <form action="/newPost" method="post" class="post-form">
+<div class="content_top post_form_input">
+    <form action="/newPost" method="post" class="post_form">
         @csrf
         @if(Auth::user()->images === 'Atlas.png')
-                <img class="post-form-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
+                <img class="post_form_user_img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
             @else
-                <img class="post-form-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user-icon">
+                <img class="post_form_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user_icon">
             @endif
-        <textarea class="post-form-textarea" name="newPost" id="" cols="100" rows="6" placeholder="投稿内容を入力してください" required></textarea>
-        <input class="post-form-img" type="image" src="images/post.png" >
+        <textarea class="post_form_textarea" name="newPost" id="" cols="100" rows="6" placeholder="投稿内容を入力してください" required></textarea>
+        <input class="post_form_img" type="image" src="images/post.png" >
     </form>
 </div>
 
 
 @foreach($posts as $post)
 <div class="post">
-    <div class="post-img">
+    <div class="post_img">
         @if($post->user->images == 'Atlas.png')
-            <img src="{{ asset('images/'.$post->user->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
+            <img src="{{ asset('images/'.$post->user->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
         @else
-            <img src="{{ asset('storage/images/'.$post->user->images) }}" width="50" height="50" class="user-icon">
+            <img src="{{ asset('storage/images/'.$post->user->images) }}" width="50" height="50" class="user_icon">
         @endif
     </div>
-    <div class="post-content">
-        <div class="post-top">
-            <p class="post-username">{{ $post->user->username }}</p>
-            <p class="post-updated_at">{{ $post->updated_at }}</p>
+    <div class="post_content">
+        <div class="post_top">
+            <p class="post_username">{{ $post->user->username }}</p>
+            <p class="post_updated_at">{{ $post->updated_at }}</p>
         </div>
-        <p class="post-post">{{ $post->post }}</p>
+        <p class="post_post">{{ $post->post }}</p>
 
         @if($post->user_id === Auth::id())
-        <div class="post-btn">
+        <div class="post_btn">
             <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" width="35" height="35"></a><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
             <a class="btn-delete" href="top/{{ $post->id }}/postDelete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash-h.png" alt="ゴミ箱" width="40" height="40"></a>
         </div>

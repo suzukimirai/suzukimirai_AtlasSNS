@@ -24,14 +24,14 @@
 </head>
 <body>
     <header>
-        <div id="header-left">
-            <a href="/top"><img class="header-logo" src="{{ asset('images/logo.png')}}"></a>
+        <div id="header_left">
+            <a href="/top"><img class="header_logo" src="{{ asset('images/logo.png')}}"></a>
         </div>
-        <div id="header-right">
-            <p class="header-username">{{ Auth::user()->username }}      さん</p>
-            <span class="slide-button"></span>
+        <div id="header_right">
+            <p class="header_username">{{ Auth::user()->username }}      さん</p>
+            <span class="slide_button"></span>
             <div class="menu">
-                <nav class="accordion-menu">
+                <nav class="accordion_menu">
                     <ul>
                         <li><a href="/top">ホーム</a></li>
                         <li><a href="/profile">プロフィール編集</a></li>
@@ -40,9 +40,9 @@
                 </nav>
             </div>
             @if(Auth::user()->images === 'Atlas.png')
-                <img class="header-user-img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
+                <img class="header_user_img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
             @else
-                <img class="header-user-img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user-icon">
+                <img class="header_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user-icon">
             @endif
         </div>
     </header>

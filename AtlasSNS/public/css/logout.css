@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
 html{
-    min-height: 100%;
+    /* max-height: 100%; */
     /* background-color:red; */
 }
 
 body{
     /* background-color:blue; */
-    /* height: 100%; */
+    height: 100%;
     background: rgba(20,124,222,1);
     background: -moz-linear-gradient(top, rgba(20,124,222,1) 0%, rgba(20,124,222,1) 30%, rgba(240,222,22,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(20,124,222,1)), color-stop(30%, rgba(20,124,222,1)), color-stop(100%, rgba(240,222,22,1)));
@@ -20,8 +20,8 @@ body{
 
 header{
     text-align:center;
-    padding-top:100px;
-    padding-bottom:50px;
+    padding-top:80px;
+    padding-bottom:30px;
 }
 
 header h1{
@@ -44,7 +44,7 @@ header p{
 }
 
 .form{
-    padding:30px 20px 50px 20px;
+    padding:25px 20px 30px 20px;
     text-align:center;
     background-color:rgba(128, 128, 128, 0.3);
     /* border: 1px solid grey; */
@@ -53,7 +53,7 @@ header p{
     margin-bottom:80px;
 }
 
-.form p{
+.register{
     color:#fff;
     margin-bottom: 20px;
     font-size:20px;
@@ -65,19 +65,27 @@ header p{
 }
 
 
-.content .label{
+label{
     display: block;
     text-align: left;
     color:#fff;
     margin-bottom:10px;
 }
 
+.label_login{
+    margin-top:10px;
+}
+
+
 .content .input{
     width:100%;
     height: 25px;
     border: 1px solid black;
     border-radius:5px;
-    margin-bottom: 20px;
+}
+
+.content .input:nth-of-type(4){
+    margin-bottom:50px;
 }
 
 .content .password{
@@ -88,20 +96,45 @@ header p{
 }
 
 .submit{
-    margin-top:20px;
-    padding: 5px 20px;
+    margin-top:10px;
+    padding: 5px 10px;
     width:150px;
     font-size:20px;
     background-color:red;
     color:white;
     border-radius:5px;
     border:none;
+    box-shadow:4px 4px #904702;
+    transition: 0.2s;
+    cursor: pointer;
+
+}
+
+.submit:active{
+    box-shadow:none;
+}
+
+.error-box{
+    text-align: left;
+    margin-top:5px;
+    height: 45px;
+}
+
+.errormessage{
+    color:rgb(255, 72, 0);
+    font-size:16px;    
 }
 
 .form a {
     display:block;
     margin-top:40px;
     color:#fff;
+    transition: 0.25s;
+}
+
+.form a:hover{
+    text-shadow:0 0 5px #000;
+
 }
 
 div #clear{

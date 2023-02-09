@@ -35,10 +35,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()//guestの場合のみ実行される。ログイン済みならposts/indexに遷移する。(RedirectIfAuthenticated.php)
-    {
-        $this->middleware('guest')->except('logout');
-    }
+    // public function __construct()//guestの場合のみ実行される。ログイン済みならposts/indexに遷移する。(RedirectIfAuthenticated.php)
+    // {
+    //     $this->middleware('guest')->except('logout');
+    // }
 
     // public function redirectPath()
     // {

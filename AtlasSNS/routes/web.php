@@ -23,9 +23,11 @@ use App\Http\Controllers\PostController;
 //ログアウト中のページ
 Route::group(["middleware" => "guest"], function() {
 
+// Route::post('login/auth' => 'Auth\LoginController@loginAuth');
+
 //ログイン最初のページ
-Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');//ログイン画面からトップページへ
+Route::get('/login', 'Auth\LoginController@login');
 
 //ユーザー登録画面
 Route::get('/register', 'Auth\RegisterController@register');
@@ -45,8 +47,8 @@ Route::group(["middleware" => "auth"], function() {
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/top','PostsController@index')->name('top');;
-Route::post('/top','PostsController@index');
+Route::get('/top','PostsController@index')->name('top');
+Route::post('/top','PostsController@index')->name('top');
 
 Route::get('/top/{id}/postDelete', 'PostsController@postDelete');
 Route::post('/top/postEdit', 'PostsController@postEdit');
