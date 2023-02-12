@@ -4,7 +4,7 @@
 
 <div class="form">
     <!-- formだからPOSTメソッド -->
-    {{ Form::open() }}
+    {{ Form::open(['url' => '/login']) }}
     {{ csrf_field() }}
     <p class="register">AtlasSNSへようこそ</p>
     <div class="content">
