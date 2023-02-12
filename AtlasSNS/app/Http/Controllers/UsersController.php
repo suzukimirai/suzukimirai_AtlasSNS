@@ -31,7 +31,6 @@ class UsersController extends Controller
         $password = $request->input('password');
         $bio = $request->input('bio');
         $inputImages = $request->file('images');
-        // rename($image, $images);
 
         if(empty($inputImages)){
             $images = 'Atlas.png';
@@ -63,8 +62,7 @@ class UsersController extends Controller
 
         $keyword = $request->input('keyword');
 
-        if(!empty($keyword)){//検索フォームに入力されたら
-
+        if(!empty($keyword)){
             $users = $user->search($keyword)->get();
 
         }else{
@@ -81,8 +79,8 @@ class UsersController extends Controller
 
         $follower = auth()->user();
 
-        $is_following = $follower->isFollowing($user->id);//$followerにisFollolingメソッドを付けるやり方は多対多時に使える！！
-        if(empty($is_following)) {//UserモデルのisFollowingメソッドの結果がtrueであれば実行！つまり、フォローしていなければ。
+        $is_following = $follower->isFollowing($user->id);
+        if(empty($is_following)) {
             $follower->follow($user->id);
         }
 

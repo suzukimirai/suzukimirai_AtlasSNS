@@ -1,15 +1,11 @@
 @charset "utf-8";
 html{
     font-size: 16px;
-    /* width:auto; */
-    /* background-color:aqua; */
     height:100%;
 
 
 }
 body{
-    /* 投稿が少ない時でも高さを画面いっぱいにできる。  */
-    /* height:100vh; */
     min-height:calc(100vh - 90px);
 
 }
@@ -18,13 +14,12 @@ body{
     border-radius:50%;
 }
 
-.content_top {/* 投稿を入れるフォームの部分の共通部分 */
+.content_top {
     border-bottom:6px solid #E0E0E0;
     width:100%;
     height:138px;
 }
 
-/* aタグ　bootstrapのデフォルトを変える */
 a {
     text-decoration: none;
     color:white;
@@ -59,19 +54,10 @@ header{
     align-items: center;
 }
 
-.header{
-    /* max-width: 1152px; */
-    /* width: 1500px; */
-    /* height: 100%; */
-    /* display: flex; */
-    /* justify-content: flex-start; */
-    /* align-items: center; */
-}
 
 .header_logo{
     margin-left:15px;
     padding:10px;
-    /* flex: none; */
     width: 150px;
     height: 70px;
   }
@@ -98,8 +84,8 @@ header{
     height:18px;
     width:18px;
     border-top: 2px solid #fff;
-    cursor: pointer; /*　マウスオン時に表示されるカーソルの形 */
-    z-index: 1; /* コンテンツの重ね順 1が後ろで9999が前 */
+    cursor: pointer; 
+    z-index: 1;
     left: 10px;
     border-left: 2px solid #fff;
     transform: rotate(45deg);
@@ -111,8 +97,8 @@ header{
     height:18px;
     width:18px;
     border-top: 2px solid #fff;
-    cursor: pointer; /*　マウスオン時に表示されるカーソルの形 */
-    z-index: 1; /* コンテンツの重ね順 1が後ろで9999が前 */
+    cursor: pointer; 
+    z-index: 1; 
     left: 10px;
     border-left: 2px solid #fff;
     transform: rotate(-135deg);
@@ -135,38 +121,24 @@ header{
 
 /* サイト全体 */
 .main{
-    /* height:calc(100% - 90px); */
     height:100%;
 
 }
 
 #row{
     display: flex;
-    /* min-height:100%; */
-
-    /* height:calc(100vh - 90px); */
-    /* height:100%; */
-    /* 投稿が増えるにつれ高さが増えていくけどそれに応じて高さも大きくなるauto*/
-    /* flex-flow: row wrap; */
 }
 
 /* 投稿部分 */
 #container{
-    /* side-barと合わせて横幅100%にする */
     width:80%;
-    /* height:100%; */
     min-height:100vh;
-
-    /* flex-basis:80%; */
-
 }
 
 /* サイドバー */
 #side-bar{
     width:20%;
     min-height:100vh;
-
-    /* flex-basis:20%; */
     border-left: 1px solid #727272;
     position:relative;
 }
@@ -240,9 +212,7 @@ header{
 
 
 .post_form{
-    /* position:relative; */
     display:flex;
-    /* height:132px; */
     padding-top:30px;
 }
 
@@ -295,14 +265,10 @@ header{
     display:flex;
     height:auto;
     border-bottom:1px solid #727272;
-
-    /* background-color:yellow; */
-
 }
 
 div.post_content{
     position:relative;
-    /* background-color: aqua; */
     height:auto;
     width:90%;
 }
@@ -343,7 +309,6 @@ div.post_content{
     width:35px;
     height:35px;
     position:relative;
-    /* text-align: center; */
 }
 
 .font_size{
@@ -395,15 +360,10 @@ div.post_content{
     border-radius: 10px;
 }
 
-/* .modal_form{
-    width:100%;
-    margin: 0 5%;
-} */
 
 .modal_post{
     width:100%;
     height:230px;
-    /* margin: 0 5%; */
 }
 
 .modal_form_edit{
@@ -440,14 +400,9 @@ div.post_content{
 /* --------------------------------
 ユーザー検索
 -------------------------------------*/
-/* .search-wrapper{
-    display:flex;
-    background-color:green;
-} */
 
 .search_wrapper{
     display:flex;
-    /* justify-content:space-around; */
 }
 
 .search_content{
@@ -495,14 +450,11 @@ i{
     padding-top:45px;
     width:350px;
     box-sizing:border-box;
-    /* width:252px;
-    height:30px; */
 }
 
 .search_word_form{
     display:flex;
     margin-left:30px;
-    /* padding-top:45px; */
     height:132px;
     align-items:center;
     word-break: break-all;
@@ -511,9 +463,6 @@ i{
 
 }
 
-/* .search-word{
-    line-height:132px;
-} */
 
 .user_wrapper{
     width:450px;
@@ -523,7 +472,6 @@ i{
 .user_content{
     display:flex;
     align-items: center;
-    /* padding:20px 0 20px 0; */
     height:60px;
     position:relative;
     margin-top:10px;
@@ -570,7 +518,6 @@ i{
 
 
 .profile_label{
-    /* display:block; */
     margin-left:42px;
     margin-bottom:78px;
 }
@@ -616,7 +563,6 @@ i{
     height:38px;
     border-radius:10px;
     border:none;
-    /* margin-top:47px; */
     margin:15px auto;
     display:block;
 }
@@ -669,7 +615,7 @@ i{
 
 .user_profile_btn{
     position:absolute;
-    top: 81px;
+    top: 115px;
     right: 20px;
 }
 

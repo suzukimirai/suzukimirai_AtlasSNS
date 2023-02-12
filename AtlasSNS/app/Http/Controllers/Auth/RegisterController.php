@@ -77,12 +77,9 @@ class RegisterController extends Controller
     }
 
 
-    // public function registerForm(){
-    //     return view("auth.register");
-    // }
 
     public function register(Request $request){
-        if($request->isMethod('post')){//ルーティングで、GetでもPostでもregisterメソッドを指定している。POSTだった場合にtrue。
+        if($request->isMethod('post')){
             $data = $request->input();
 
             $this->validator($data);
@@ -93,14 +90,9 @@ class RegisterController extends Controller
                 'password' => 'required|string|min:8|max:20|confirmed|alpha_num',
                 ]);
 
-                // if ($validator->fails()) {
-                //     return redirect()->back()
-                //     ->withInput()
-                //     ->withErrors($validator);
-                // }
 
-            $this->create($data);//同じページ内のcreateメソッドを呼び出して、そこで登録をしている。
-            $request->session()->put('username', $data['username']); // ここでセッションにusernameを保存する
+            $this->create($data);
+            $request->session()->put('username', $data['username']); 
             return redirect('added');
 
         }

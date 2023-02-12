@@ -20,31 +20,18 @@ class PostsController extends Controller
 
 
     public function index(Follow $follow){
-
-        //トップページ共通ヘッダー
-
-        // $following_id = $follow->countFollowing_id(Auth::id());
-        // $followed_id = $follow->countFollowed_id(Auth::id());
-        //dd($user);
-
         //投稿トップページ
 
         $following_id = Auth::user()->following()->pluck('followed_id');
-        //dd($following_id);
         $posts = Post::with('user')->whereIn('user_id',$following_id)->orWhere('user_id',Auth::id())->get();
 
-        // $posts = Post::get();
-        // dd($posts);
         return view('posts.index', compact('posts'));
 
-        //フォローリストページ
-
-        //フォロワーリストページ
     }
 
     public function followList(){
 
-        $following_id = Auth::user()->following()->pluck('followed_id');//ログインユーザーがフォローしているユーザーのID
+        $following_id = Auth::user()->following()->pluck('followed_id');
         $followuserimages = User::whereIn('id',$following_id)->get();
         $followuserposts = Post::whereIn('user_id',$following_id)->get();
         return view('follows.followlist', compact('followuserimages','followuserposts'));
@@ -52,7 +39,7 @@ class PostsController extends Controller
 
     public function followerList(){
 
-        $followed_id = Auth::user()->followed()->pluck('following_id');//ログインユーザーがフォローしているユーザーのIID
+        $followed_id = Auth::user()->followed()->pluck('following_id');
         $followeruserimages = User::whereIn('id',$followed_id)->get();
         $followeruserposts = Post::whereIn('user_id',$followed_id)->get();
 
@@ -61,11 +48,11 @@ class PostsController extends Controller
 
     public function newPost(Request $request, Post $post){
 
-        $request->validate([//$requestで受け取ったものをバリデーションする。
+        $request->validate([
             'newPost' => 'between:1,200',
         ]);
 
-        $newPost = $request->input('newPost');//$requestでフォーム全体を送り、その中でnameの部分(newPost)を受け取り$postに代入する
+        $newPost = $request->input('newPost');
 
         $post->postCreate($newPost);
          return redirect('top');
@@ -80,7 +67,7 @@ class PostsController extends Controller
     }
 
     public function postDelete($id, Post $post){
-        $post->postDelete($id);//PostモデルのpostDeleteメソッドを呼び出している。
+        $post->postDelete($id);
         return redirect('top');
     }
 
