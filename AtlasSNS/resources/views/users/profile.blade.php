@@ -11,7 +11,7 @@
     @if(Auth::user()->images == 'Atlas.png')
             <img src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
         @else
-            <img src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user_icon">
+            <img src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
         @endif
     </div>
 
@@ -28,7 +28,7 @@
             </div>
             <div class="profile_data">
                 <input type="text" name="username" id="username" value="{{ Auth::user()->username }}" class="profile_input" required>
-                <div class="error-box">
+                <div class="error_box">
                     @if($errors->has('username'))
                     @foreach($errors->get('username') as $message)
                         <p class="errormessage">{{ $message }}</p>
@@ -45,15 +45,15 @@
                 </div>
                 <input type="password" name="password" id="password" value="" class="profile_input" required>
                 <input type="password" name="password_confirmation" id="password_confirmation" value="" class="profile_input" required>
-                <div class="error-box">
+                <div class="error_box">
                     @if($errors->has('password'))
                     @foreach($errors->get('password') as $message)
                         <p class="errormessage">{{ $message }}</p>
                     @endforeach
                     @endif 
                 </div>
-                <textarea name="bio" id="bio" value="{{ Auth::user()->bio }}" rows="2" class="profile_input"></textarea>
-                <div class="error-box">
+                <textarea name="bio" id="bio" rows="2" class="profile_input">{{ Auth::user()->bio }}</textarea>
+                <div class="error_box">
                     @if($errors->has('bio'))
                     @foreach($errors->get('bio') as $message)
                         <p class="errormessage">{{ $message }}</p>
@@ -83,7 +83,7 @@
     @if($user->images == 'Atlas.png')
         <img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
     @else
-        <img src="{{ asset('storage/images/'.$user->images) }}" width="50" height="50" class="user_icon">
+        <img src="{{ asset('storage/images/'.$user->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
     @endif
     <div class="user_profile_detail">
         <div class="user_profile_header">
@@ -96,7 +96,7 @@
         </div>
     </div>
     @if (auth()->user()->isFollowing($user->id))<!-- 相手をフォローしているかどうかで条件分岐 -->
-        <form action="/profile/{{$user->id}}/profileUnFollow" method="POST" class="user_profile-btn">
+        <form action="/profile/{{$user->id}}/profileUnFollow" method="POST" class="user_profile_btn">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <button type="submit" class="btn btn-danger">フォロー解除</button>
@@ -116,7 +116,7 @@
     @if($user->images == 'Atlas.png')
         <img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="50" height="50">
     @else
-        <img src="{{ asset('storage/images/'.$user->images) }}" width="50" height="50">
+        <img src="{{ asset('storage/images/'.$user->images) }}" alt="ユーザーアイコン" width="50" height="50">
     @endif
     </div>
     <div class="post_content">

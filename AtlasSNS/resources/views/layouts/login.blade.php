@@ -25,54 +25,57 @@
 <body>
     <header>
         <div id="header_left">
-            <a href="/top"><img class="header_logo" src="{{ asset('images/logo.png')}}"></a>
+            <a href="/top"><img class="header_logo" src="{{ asset('images/logo.png')}}" alt="Atlas"></a>
         </div>
         <div id="header_right">
             <p class="header_username">{{ Auth::user()->username }}      さん</p>
             <span class="slide_button"></span>
-            <div class="menu">
-                <nav class="accordion_menu">
-                    <ul>
-                        <li><a href="/top">ホーム</a></li>
-                        <li><a href="/profile">プロフィール編集</a></li>
-                        <li><a href="/logout">ログアウト</a></li>
-                    </ul>
-                </nav>
-            </div>
             @if(Auth::user()->images === 'Atlas.png')
                 <img class="header_user_img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
             @else
-                <img class="header_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user-icon">
+                <img class="header_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
             @endif
         </div>
     </header>
-    <div id="row">
-        <div id="container">
-            @yield('content')
-        </div >
-        <div id="side-bar">
-            <div id="confirm">
-                <p>{{ Auth::user()->username }}   さんの</p>
-                <div class="side-bar follow">
-                    <p>フォロー数</p>
-                    <p>{{ Auth::user()->following()->count() }}人</p>
+    <div class="main">
+        <div id="row">
+            <div id="container">
+                @yield('content')
+            </div >
+            <div id="side-bar">
+                <div id="confirm">
+                    <p>{{ Auth::user()->username }}   さんの</p>
+                    <div class="side-bar follow">
+                        <p>フォロー数</p>
+                        <p>{{ Auth::user()->following()->count() }}人</p>
+                    </div>
+                    <div class="side-bar-btn">
+                        <button type="button" class="btn btn-primary"><a href="/follow-list">フォローリスト</a></button>
+                    </div>
+                    <div class="side-bar follower">
+                        <p>フォロワー数</p>
+                        <p>{{ Auth::user()->followed()->count() }}人</p>
+                    </div>
+                    <div class="side-bar-btn">
+                        <button type="button" class="btn btn-primary"><a href="/follower-list">フォロワーリスト</a></button>
+                    </div>
                 </div>
-                <div class="side-bar-btn">
-                    <button type="button" class="btn btn-primary"><a href="/follow-list">フォローリスト</a></button>
+                <div class="side-bar-btn search">
+                    <button type="button" class="btn btn-primary"><a href="/search">ユーザー検索</a></button>
                 </div>
-                <div class="side-bar follower">
-                    <p>フォロワー数</p>
-                    <p>{{ Auth::user()->followed()->count() }}人</p>
-                </div>
-                <div class="side-bar-btn">
-                    <button type="button" class="btn btn-primary"><a href="/follower-list">フォロワーリスト</a></button>
+
+                <div class="menu">
+                    <nav class="accordion_menu">
+                        <ul>
+                            <li class="menu_list"><a href="/top" class="menu_a">ホーム</a></li>
+                            <li class="menu_list"><a href="/profile" class="menu_a">プロフィール編集</a></li>
+                            <li class="menu_list"><a href="/logout" class="menu_a">ログアウト</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-            <div class="side-bar-btn search">
-                <button type="button" class="btn btn-primary"><a href="/search">ユーザー検索</a></button>
-            </div>
-        </div>
-    </div>
+        </div><!-- row -->
+    </div><!-- main -->
     <footer>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>

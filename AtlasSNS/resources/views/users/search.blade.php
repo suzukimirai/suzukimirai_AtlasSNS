@@ -25,7 +25,7 @@
         @if($user->images == 'Atlas.png')
             <dt><a href="/{{$user->id}}/userProfile"><img src="{{ asset('images/'.$user->images)}}" alt="ユーザーアイコン" width="40" height="40" class="user_icon"></a></dt>
         @else
-            <dt><a href="/{{$user->id}}/userProfile"><img src="{{ asset('storage/images/'.$user->images) }}" width="40" height="40" class="user_icon"></a></dt>
+            <dt><a href="/{{$user->id}}/userProfile"><img src="{{ asset('storage/images/'.$user->images) }}" alt="ユーザーアイコン" width="40" height="40" class="user_icon"></a></dt>
         @endif
             <dt class="follow_username">{{ $user->username }}</dt>
         @if (auth()->user()->isFollowing($user->id))<!-- 相手をフォローしているかどうかで条件分岐 -->

@@ -26,8 +26,8 @@ Route::group(["middleware" => "guest"], function() {
 // Route::post('login/auth' => 'Auth\LoginController@loginAuth');
 
 //ログイン最初のページ
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');//ログイン画面からトップページへ
-Route::get('/login', 'Auth\LoginController@login');
 
 //ユーザー登録画面
 Route::get('/register', 'Auth\RegisterController@register');

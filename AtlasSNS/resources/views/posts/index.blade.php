@@ -12,10 +12,10 @@
         @if(Auth::user()->images === 'Atlas.png')
                 <img class="post_form_user_img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
             @else
-                <img class="post_form_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" width="50" height="50" class="user_icon">
+                <img class="post_form_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
             @endif
         <textarea class="post_form_textarea" name="newPost" id="" cols="100" rows="6" placeholder="投稿内容を入力してください" required></textarea>
-        <input class="post_form_img" type="image" src="images/post.png" >
+        <button class="post_form_img fa-regular fa-paper-plane" type="submit">
     </form>
 </div>
 
@@ -26,7 +26,7 @@
         @if($post->user->images == 'Atlas.png')
             <img src="{{ asset('images/'.$post->user->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
         @else
-            <img src="{{ asset('storage/images/'.$post->user->images) }}" width="50" height="50" class="user_icon">
+            <img src="{{ asset('storage/images/'.$post->user->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
         @endif
     </div>
     <div class="post_content">
@@ -38,8 +38,10 @@
 
         @if($post->user_id === Auth::id())
         <div class="post_btn">
-            <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" width="35" height="35"></a><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
-            <a class="btn-delete" href="top/{{ $post->id }}/postDelete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash-h.png" alt="ゴミ箱" width="40" height="40"></a>
+            <a class="js-modal-open " href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" width="35" height="35" ></a><!-- aタグで遷移する場合、通信方法は基本GET。DBのidをURLのパラメータに入れる -->
+            <div class="btn-delete-box">
+                <a class="btn-delete" href="top/{{ $post->id }}/postDelete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><i class="fa-sharp fa-regular fa-trash-can font_size"></i></a>
+            </div>
         </div>
         @endif
     </div>

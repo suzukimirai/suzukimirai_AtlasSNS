@@ -10,7 +10,7 @@
         @if($followeruserimage->images == 'Atlas.png')
                     <a href="/{{$followeruserimage->id}}/userProfile"><img src="{{ asset('images/'.$followeruserimage->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon"></a>
                 @else
-                    <a href="/{{$followeruserimage->id}}/userProfile"><img src="{{ asset('storage/images/'.$followeruserimage->images) }}" width="50" height="50" class="user_icon"></a>
+                    <a href="/{{$followeruserimage->id}}/userProfile"><img src="{{ asset('storage/images/'.$followeruserimage->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon"></a>
                 @endif
         @endforeach
     </div>
@@ -23,7 +23,7 @@
     @if($followeruserpost->user->images == 'Atlas.png')
         <a href="/{{$followeruserpost->user->id}}/userProfile"><img src="{{ asset('images/'.$followeruserpost->user->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon"></a>
     @else
-        <a href="/{{$followeruserpost->user->id}}/userProfile"><img src="{{ asset('storage/images/'.$followeruserpost->user->images) }}" width="50" height="50" class="user_icon"></a>
+        <a href="/{{$followeruserpost->user->id}}/userProfile"><img src="{{ asset('storage/images/'.$followeruserpost->user->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon"></a>
     @endif
     </div>
     <div class="post_content">

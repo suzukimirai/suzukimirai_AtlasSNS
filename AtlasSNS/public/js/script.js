@@ -23,3 +23,13 @@ $(function(){
         return false;
     });
 });
+
+$(function(){
+    $('.slide_button').click(function () {
+        $('.menu').toggle();
+        $('.slide_button').toggleClass('is_active');
+        return false;
+
+    });
+});
+
