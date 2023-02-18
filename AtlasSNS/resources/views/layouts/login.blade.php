@@ -31,9 +31,9 @@
             <p class="header_username">{{ Auth::user()->username }}      さん</p>
             <span class="slide_button"></span>
             @if(Auth::user()->images === 'Atlas.png')
-                <img class="header_user_img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
+                <img  src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" class="user_icon">
             @else
-                <img class="header_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user-icon">
+                <img  src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
             @endif
         </div>
     </header>

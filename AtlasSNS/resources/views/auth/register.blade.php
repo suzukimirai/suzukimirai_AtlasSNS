@@ -10,7 +10,7 @@
   <div class="content">
     <label for="username" class="label">user name</label>
     <input type="text" name="username" class="input">
-    <div class="error-box">
+    <div class="error_box">
         @if($errors->has('username'))
         @foreach($errors->get('username') as $message)
             <p class="errormessage">{{ $message }}</p>

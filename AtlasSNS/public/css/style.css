@@ -12,6 +12,7 @@ body{
 
 .user_icon{
     border-radius:50%;
+    overflow: hidden;
 }
 
 .content_top {
@@ -67,6 +68,7 @@ header{
     margin:0 30px 0 auto;
     justify-content:space-between;
 }
+
 
 .header_username{
     display:flex;
@@ -595,6 +597,7 @@ i{
 
 .user_profile_header{
     font-size:18px;
+    padding-bottom:10px;
 }
 
 .user_profile_data{
@@ -602,6 +605,7 @@ i{
     font-size:18px;
     width:600px;
     overflow-wrap: break-word;
+    padding-bottom:10px;
 }
 
 .user_profile_data p:last-child{
@@ -615,8 +619,8 @@ i{
 
 .user_profile_btn{
     position:absolute;
-    top: 115px;
-    right: 20px;
+    bottom: 10px;
+    right: 10px;
 }
 
 .modal textarea{

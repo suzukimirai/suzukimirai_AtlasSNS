@@ -19,11 +19,11 @@ class PostsController extends Controller
 
 
 
-    public function index(Follow $follow){
+    public function index(Follow $follow, Post $post){
         //投稿トップページ
 
         $following_id = Auth::user()->following()->pluck('followed_id');
-        $posts = Post::with('user')->whereIn('user_id',$following_id)->orWhere('user_id',Auth::id())->get();
+        $posts = $post->postAsc($following_id);
 
         return view('posts.index', compact('posts'));
 
@@ -33,7 +33,7 @@ class PostsController extends Controller
 
         $following_id = Auth::user()->following()->pluck('followed_id');
         $followuserimages = User::whereIn('id',$following_id)->get();
-        $followuserposts = Post::whereIn('user_id',$following_id)->get();
+        $followuserposts = Post::userPostAsc($following_id);
         return view('follows.followlist', compact('followuserimages','followuserposts'));
     }
 
@@ -41,7 +41,7 @@ class PostsController extends Controller
 
         $followed_id = Auth::user()->followed()->pluck('following_id');
         $followeruserimages = User::whereIn('id',$followed_id)->get();
-        $followeruserposts = Post::whereIn('user_id',$followed_id)->get();
+        $followeruserposts = Post::userPostAsc($followed_id);
 
         return view('follows.followerList', compact('followeruserimages','followeruserposts'));
     }

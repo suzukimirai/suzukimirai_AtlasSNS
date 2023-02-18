@@ -32,12 +32,17 @@ class UsersController extends Controller
         $bio = $request->input('bio');
         $inputImages = $request->file('images');
 
-        if(empty($inputImages)){
-            $images = 'Atlas.png';
-        }else{
+        //
+        if(!empty($inputImages)){//中身があるとき
             $images = $request->file('images')->getClientOriginalName();
             $image = $request->file('images')->storeAs('public/images',$images);
+        }elseif(!(Auth::user()->images === 'Atlas.png')){//デフォルトから変更したことがある
+            $images = Auth::user()->images;
+        }else{
+            $images = 'Atlas.png';
         }
+
+        // dd($images);
 
         User::where('id', Auth::id())->update([
             'username' => $username,

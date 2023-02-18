@@ -30,10 +30,14 @@ class Post extends Model
         return Post::where('id', $id)->delete();
     }
 
-    //降順
-    public function userPostAsc($id){
-        return Post::where('user_id', $id)->orderBy('updated_at', 'desc')->get();
+    //降順 フォローリストの投稿
+    public static function userPostAsc($id){
+        return Post::whereIn('user_id', $id)->orderBy('updated_at', 'desc')->get();
     }
 
+    //topページの降順
+    public static function postAsc($following_id){
+        return Post::with('user')->whereIn('user_id',$following_id)->orWhere('user_id',Auth::id())->orderBy('updated_at', 'desc')->get();
+    }
 
 }

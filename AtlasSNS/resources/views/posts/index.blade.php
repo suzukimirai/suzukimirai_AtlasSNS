@@ -10,9 +10,9 @@
     <form action="/newPost" method="post" class="post_form">
         @csrf
         @if(Auth::user()->images === 'Atlas.png')
-                <img class="post_form_user_img" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
+                <img class="post_form_user_img user_icon" src="{{ asset('images/'.Auth::user()->images)}}" alt="ユーザーアイコン" width="50" height="50" >
             @else
-                <img class="post_form_user_img" src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" class="user_icon">
+                <img class="post_form_user_img user_icon" src="{{ asset('storage/images/'.Auth::user()->images) }}" alt="ユーザーアイコン" width="50" height="50" >
             @endif
         <textarea class="post_form_textarea" name="newPost" id="" cols="100" rows="6" placeholder="投稿内容を入力してください" required></textarea>
         <button class="post_form_img fa-regular fa-paper-plane" type="submit">
