@@ -33,7 +33,7 @@ class PostsController extends Controller
 
         $following_id = Auth::user()->following()->pluck('followed_id');
         $followuserimages = User::whereIn('id',$following_id)->get();
-        $followuserposts = Post::userPostAsc($following_id);
+        $followuserposts = Post::followUserPostAsc($following_id);
         return view('follows.followlist', compact('followuserimages','followuserposts'));
     }
 
@@ -41,7 +41,7 @@ class PostsController extends Controller
 
         $followed_id = Auth::user()->followed()->pluck('following_id');
         $followeruserimages = User::whereIn('id',$followed_id)->get();
-        $followeruserposts = Post::userPostAsc($followed_id);
+        $followeruserposts = Post::followUserPostAsc($followed_id);
 
         return view('follows.followerList', compact('followeruserimages','followeruserposts'));
     }

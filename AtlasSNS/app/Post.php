@@ -31,9 +31,15 @@ class Post extends Model
     }
 
     //降順 フォローリストの投稿
-    public static function userPostAsc($id){
+    public static function followUserPostAsc($id){
         return Post::whereIn('user_id', $id)->orderBy('updated_at', 'desc')->get();
     }
+
+    //降順 ユーザープロフィールの投稿
+    public static function userPostAsc($id){
+        return Post::where('user_id', $id)->orderBy('updated_at', 'desc')->get();
+    }
+
 
     //topページの降順
     public static function postAsc($following_id){
