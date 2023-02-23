@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +17,8 @@ class UserSeeder extends Seeder
         //
         User::create([
             'username' => 'リンゴ',
-            'mail' => 'ringo@gmail.com',
-            'password' => 'Miraidesu0717',
+            'mail' => 'apple@gmail.com',
+            'password' => Hash::make('Miraidesu0717'),
             'images' => 'Atlas.png'
         ]);
     }
